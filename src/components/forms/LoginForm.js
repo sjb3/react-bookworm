@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Button, Message } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 import Validator from 'validator';
 import InlineError from '../messages/InlineError';
-import propTypes from 'prop-types';
 
 class LoginForm extends Component {
   state = {
@@ -43,7 +43,7 @@ class LoginForm extends Component {
         { errors.global && <Message negative>
           <Message.Header>Something's wrong</Message.Header>
           <p>{errors.global}</p>
-          </Message>}
+          </Message> }
         <Form.Field error={!!errors.email}>
           <label
             style={{fontStyle: 'italic'}}
@@ -80,7 +80,7 @@ class LoginForm extends Component {
 }
 
 LoginForm.propTypes = {
-  submit: propTypes.func.isRequired
+  submit: PropTypes.func.isRequired
 }
 
 export default LoginForm;
