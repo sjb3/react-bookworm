@@ -17,10 +17,10 @@ HomePage.propTypes = {
   logout: PropTypes.func.isRrequired
 };
 
-function mapStateProps(state) {
+function mapStateToProps(state) {
   return {
     isAuthenticated: !!state.user.token
   }
 }
 
-export default connect(mapStateProps, {logout: actions.logout})(HomePage);
+export default connect(mapStateToProps, {logout: actions.logout})(HomePage);
