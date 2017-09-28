@@ -1,47 +1,47 @@
-import React, { Component } from 'react';
-import { Form, Button } from 'semantic-ui-react';
-import PropTypes from 'prop-types';
-// import Validator from 'validator';
-// import InlineError from '../messages/InlineError';
-import isEmail from 'validator/lib/isEmail';
-
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Form, Button } from "semantic-ui-react";
+import isEmail from "validator/lib/isEmail";
+import InlineError from "../messages/InlineError";
 
 class SignupForm extends Component {
   state = {
     data: {
-      email: '',
-      password: ''
+      email: "",
+      password: ""
     },
     loading: false,
     errors: {}
   };
 
-  // onChange = (e) =>
-  //   this.setState({
-  //     data: { ...this.state.data, [e.target.name]: e.target.value }
-  //   });
+  onChange = e =>
+    this.setState({
+      ...this.state,
+      data: { ...this.state.data, [e.target.name]: e.target.value }
+    });
 
-  onSubmit = (e) => {
-    e.preventdefault();
-
+  onSubmit = e => {
+    e.preventDefault();
     const errors = this.validate(this.state.data);
     this.setState({ errors });
-    if(Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length === 0) {
       this.setState({ loading: true });
       this.props
         .submit(this.state.data)
-        .catch(err => this.setState({ errors: err.response.data.errors, loading: false }))
+        .catch(err =>
+          this.setState({ errors: err.response.data.errors, loading: false })
+        );
     }
   };
 
-  validate = (data) => {
+  validate = data => {
     const errors = {};
 
-    if(!isEmail(data.email)) errors.email = "Not valid E mail address";
+    if (!isEmail(data.email)) errors.email = "Invalid email";
     if (!data.password) errors.password = "Can't be blank";
 
     return errors;
-  }
+  };
 
   render() {
     const { data, errors, loading } = this.state;
@@ -49,42 +49,38 @@ class SignupForm extends Component {
     return (
       <Form onSubmit={this.onSubmit} loading={loading}>
         <Form.Field error={!!errors.email}>
-          <label
-            style={{fontStyle: 'italic'}}
-            htmlFor="email">e-mail</label>
+          <label htmlFor="email">Email</label>
           <input
-            style={{fontStyle: 'italic'}}
             type="email"
             id="email"
             name="email"
-            placeholder="example@example.com"
+            placeholder="email@email.com"
             value={data.email}
-            onChange={this.onChange}/>
-            {errors.email && <InlineError text={errors.email} />}
+            onChange={this.onChange}
+          />
+          {errors.email && <InlineError text={errors.email} />}
         </Form.Field>
 
         <Form.Field error={!!errors.password}>
-          <label
-            style={{fontStyle: 'italic'}}
-            htmlFor="password">Password</label>
+          <label htmlFor="password">Password</label>
           <input
-            style={{fontStyle: 'italic'}}
             type="password"
             id="password"
             name="password"
-            placeholder="password"
             value={data.password}
-            onChange={this.onChange}/>
-            {errors.password && <InlineError text={errors.password} />}
+            onChange={this.onChange}
+          />
+          {errors.password && <InlineError text={errors.password} />}
         </Form.Field>
 
-        <Button primary>SignUp </Button>
+        <Button primary>Sign Up</Button>
       </Form>
     );
   }
 }
- SignupForm.propTypes = {
+
+SignupForm.propTypes = {
   submit: PropTypes.func.isRequired
-}
+};
 
 export default SignupForm;
