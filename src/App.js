@@ -1,12 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { Route } from 'react-router-dom';
 import HomePage from './components/pages/HomePage';
 import LoginPage from './components/pages/LoginPage';
-// import SignupPage from './components/pages/SignupPage';
+import SignupPage from './components/pages/SignupPage';
 import DashboardPage from './components/pages/DashboardPage';
 import UserRoute from './components/routes/UserRoute';
 import GuestRoute from './components/routes/GuestRoute';
-// import PropTypes from 'prop-types';
 
 const App = ({ location }) => (
   <div className='ui container'>
