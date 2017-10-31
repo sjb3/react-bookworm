@@ -7,8 +7,8 @@ import InlineError from "../messages/InlineError";
 class SignupForm extends Component {
   state = {
     data: {
-      email: "",
-      password: ""
+      email: '',
+      password: ''
     },
     loading: false,
     errors: {}
@@ -20,8 +20,9 @@ class SignupForm extends Component {
       data: { ...this.state.data, [e.target.name]: e.target.value }
     });
 
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
+
     const errors = this.validate(this.state.data);
     this.setState({ errors });
     if (Object.keys(errors).length === 0) {

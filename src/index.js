@@ -8,7 +8,7 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import rootReducer from './rootReducer.js';
+import rootReducer from './rootReducer';
 import { userLoggedIn } from './actions/auth';
 
 
