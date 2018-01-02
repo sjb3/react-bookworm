@@ -55,11 +55,11 @@ class SignupForm extends Component {
             type="email"
             id="email"
             name="email"
-            placeholder="email@email.com"
+            placeholder="example@example.com"
             value={data.email}
             onChange={this.onChange}
           />
-          {errors.email && <InlineError text={errors.email} />}
+          {errors.email  && <InlineError text={errors.email} />}
         </Form.Field>
 
         <Form.Field error={!!errors.password}>
@@ -68,6 +68,7 @@ class SignupForm extends Component {
             type="password"
             id="password"
             name="password"
+            placeholder="minimum 4"
             value={data.password}
             onChange={this.onChange}
           />
